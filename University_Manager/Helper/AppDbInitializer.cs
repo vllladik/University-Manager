@@ -33,7 +33,7 @@ namespace University_Manager.Models.Roles
 
             if (!userManager.Users.Any())
             {
-       var admin = new ApplicationUser { Email = "admin@gmail.com", UserName = "admin@gmail.com" };
+                var admin = new ApplicationUser { Email = "admin@gmail.com", UserName = "admin@gmail.com" };
             string password = "Qwerty1-";
             var result = userManager.Create(admin, password);
 
