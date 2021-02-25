@@ -26,6 +26,8 @@ namespace University_Manager.Models
         public DbSet<Entity.Models.Group> Groups { get; set; }
         public DbSet<Student> Students { get; set; }
 
+        public DbSet<Request> Requests { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

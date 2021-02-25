@@ -1,8 +1,8 @@
 ﻿body {
-    padding-top: 50px;
+/*    padding-top: 50px;*/
     padding-bottom: 20px;
-    background-color:#5C7590;
-    color:white;
+    background-color: #4E5E6F;
+    color: white;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -26,10 +26,10 @@ textarea {
 }
 
 .nav-br {
-    background-color: #435468;
-    color: white;
+    background-color: #383640;
+    color: white !important;
     font-family: Dishonorable Mention;
-    font-size:20px;
+    font-size: 20px;
 }
 .icn{
     width:5px;
@@ -43,9 +43,32 @@ textarea {
 
 .wl-team{
     text-align:center;
-    margin-top:15px;
+    margin-top:2px;
    /* filter:blur(3px);*/
 }
-.wl-img{
-    border: 2px solid teal;
+.wl-img {
+    background-color: #151313;
+    width: 80%;
+    margin-left: 10%;
+}
+
+
+
+.und_text {
+    font-family: 3allamni;
+    font-size: 18px;
+    margin-left:6%;
+    width:88%;
+}
+
+.tx-color{
+    color:white;
+}
+.form-navbar-right{
+    float:right !important;
+    margin-left:auto;
+}
+
+.text-white{
+    color:white;
 }

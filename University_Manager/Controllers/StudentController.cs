@@ -33,9 +33,6 @@ namespace University_Manager.Controllers
             }); ;
             return View(models);
 
-
-
-
         }
 
     }

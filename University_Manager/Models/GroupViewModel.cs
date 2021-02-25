@@ -12,5 +12,6 @@ namespace University_Manager.Models
 
         [Required]
         public string Name { get; set; }
+        public ICollection<StudentViewModel> Students { get; set; }
     }
 }

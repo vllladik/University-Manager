@@ -81,6 +81,20 @@ namespace University_Manager.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    var user = UserManager.FindByEmail(model.Email);
+                    var roles = UserManager.GetRoles(user.Id);
+                    foreach (var role in roles)
+                    {
+                        switch (role)
+                        {
+                            case "Admin":
+                                return RedirectToAction("Dashboard", "AdminPanel", new { area = "Admin" });
+                            case "User":
+                                return RedirectToAction("UsersView", "User", new { area = "User" });
+                            default:
+                                return RedirectToAction("Index", "Home");
+                        }
+                    }
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -92,6 +106,7 @@ namespace University_Manager.Controllers
                     return View(model);
             }
         }
+
 
         //
         // GET: /Account/VerifyCode
@@ -153,8 +168,9 @@ namespace University_Manager.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email/*,Image = model.Image,*/};
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email};
                 var result = await UserManager.CreateAsync(user, model.Password);
+
 
 
                 if (result.Succeeded)
@@ -163,21 +179,24 @@ namespace University_Manager.Controllers
                     Student st = new Student()
                     {
                         ApplicationUser = _context.Users.FirstOrDefault(x => x.Email == model.Email),
-                       //ApplicationUser = _context.Users.FirstOrDefault(x => x.Image == model.Image)
+                        Image = model.Image
+
+
 
                     };
                     _context.Students.Add(st);
                     _context.SaveChanges();
 
-
+                    await UserManager.AddToRoleAsync(user.Id, "User");
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("UsersView", "User",new { area="User"});
                 }
                 AddErrors(result);
             }
+
 
             // If we got this far, something failed, redisplay form
             return View(model);
